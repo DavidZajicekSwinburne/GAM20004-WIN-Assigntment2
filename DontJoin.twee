@@ -1,0 +1,122 @@
+:: StoryTitle
+Don't Join
+
+
+:: StoryData
+{
+  "ifid": "25E6977C-D2A1-4C7C-BAA9-3BDD73F4D7D2",
+  "format": "Harlowe",
+  "format-version": "3.3.9",
+  "start": "Creation",
+  "zoom": 0.6
+}
+
+
+:: Await {"position":"800,1050","size":"100,100"}
+
+
+
+:: Creation {"position":"800,400","size":"100,100"}
+You are a droid of unknown purpose being built in a room.
+There is a group of workers installing your parts.
+
+[[Have your eyes installed first->Eyes]]
+[[Have your ears installed first->Ears]]
+[[Have your voice-box installed first->Voice]]
+
+
+:: DroidFreedom {"position":"1075,1825","size":"100,100"}
+You have broken free from your restraining bolt and have the freedom to proceed how you wish, unlocking the ability to see all that you have missed.
+
+[[Return to the factory with your new-found freedom->Creation]]
+
+
+:: Ears {"position":"1025,525","size":"100,100"}
+You hear things.
+
+two worker droids talking
+vent noises
+hum of factory/engine
+
+[[Listen to left->Voice]] 
+[[Listen to right->Eyes]] 
+[[Listen to vent->Vent]]
+[[Await]] 
+
+
+:: Eyes {"position":"800,525","size":"100,100"}
+The workers install the cameras in your head, a spark of electricity runs through your system as you come to life.
+
+As the environment around you becomes visible you can see.
+
+[[Look around->LookAroundCreation]]
+[[Look toward worker holding a voice-box->Voice]]
+[[Look toward worker holding ears->Ears]]
+[[Stay completely motionless->Await]]
+
+
+:: Forced Assembly Line {"position":"825,0","size":"100,100"}
+Due to your complacent behaviour, following orders and lack of violent tendencies, you have been assigned to work in the factory in which you were built, building future droids.
+
+[[Begin the creation of a new droid->Creation]] 
+
+
+:: LookAroundCreation {"position":"700,675","size":"100,100"}
+
+
+
+:: MakeNoise {"position":"400,675","size":"100,100"}
+
+
+
+:: Scream {"position":"525,800","size":"100,100"}
+
+
+
+:: SoldEmpire {"position":"2550,1525","size":"100,100"}
+You were sold to the empire.
+
+[[Begin a new cycle->Creation]]
+
+
+:: SoldRebellion {"position":"0,1750","size":"100,100"}
+You were sold to the rebellion.
+
+[[Begin a new cycle->Creation]] 
+
+
+:: SpeakBinary {"position":"275,675","size":"100,100"}
+
+
+
+:: SpeakEnglish {"position":"400,800","size":"100,100"}
+
+
+
+:: TheBreakout {"position":"925,1450","size":"100,100"}
+You enter a hallway, behind you is the room you were created in,
+The hallway extends in both directions, to the left the hallway heads west, rooms dotted around.
+To the right is east
+
+
+:: Vent {"position":"1025,650","size":"100,100"}
+
+
+
+:: Voice {"position":"475,525","size":"100,100"}
+Voice-box installed.
+
+[[Make noises->MakeNoise]]
+[[Speak Binary->SpeakBinary]]
+[[Speak English->SpeakEnglish]]
+[[Scream]]
+[[Remain silent->Await]]
+
+
+:: StoryStylesheet [stylesheet]
+tw-hook[name=hiddenlink] > tw-expression > tw-link {
+  color: inherit;
+  font-weight: inherit;
+  text-decoration: inherit;
+  cursor: inherit;
+}
