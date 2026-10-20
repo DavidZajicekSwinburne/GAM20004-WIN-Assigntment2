@@ -1,0 +1,191 @@
+:: StoryTitle
+Don't Join
+
+
+:: StoryData
+{
+  "ifid": "25E6977C-D2A1-4C7C-BAA9-3BDD73F4D7D2",
+  "format": "Harlowe",
+  "format-version": "3",
+  "zoom": 0.6
+}
+
+:: Startup [startup] {"position":"800,0"}
+(set: $hasEars to false)\
+(set: $hasVoice to false)\
+(set: $awareness to 0)
+
+:: Start {"position":"800,200","size":"100,100"}
+#Don't Join
+|keywords>[Keywords] in the body will help you to explore the world. This could be |keywords>[investigating or interacting with objects] in the world.
+
+(click: ?keywords)[|decisions>[Decisions] will appear at the bottom of the screen below the line, these decisions cannot be undone and will move on from the current scene.]
+---
+(click: ?decisions)[[[Power On->Creation]] to begin the story
+]
+\(click: ?investigating)[Investigating can reveal new choices and change the world state]
+
+
+:: Creation {"position":"800,400","size":"100,100"}
+A spark of electricity as you come to life, |lookAround>[you appear to be in a grey room...](click: ?lookAround)[(append: ?lookAround)[
+  
+  Looking around you further, you appear to be shackled to a chair.
+  
+  |hiddenRoom>[The room] is completely silent. It seems like you are still in the process of being built as you are unable to hear or speak.
+  (click: ?hiddenRoom)[(set: $awareness to $awareness + 1)Looking further around the room you see a vent in the corner.]
+  
+  You see two droids standing above you, they appear to be arguing with each other.
+|leftDroid>[The droid to your left](click: ?leftDroid)[(append: ?leftDroid)[ is a silver droid that appears to be holding a |voiceBox>[voice-box unit]]]
+|rightDroid>[The droid to your right](click: ?rightDroid)[(append: ?rightDroid)[ is a bronze droid that appears to be holding an |earsBox>[auditory sensor array]]]]]
+---
+(click: ?voiceBox)[[[Point towards the silver droid with the Voice-Box Unit->Voice]]]
+(click: ?earsBox)[[Point towards the bronze droid with the Auditory Sensor Array->Ears]]
+
+
+
+:: Ears {"position":"700,600","size":"100,100"}
+(set: $hasEars to true)
+The bronze droid installs your auditory sensor array, a loud humming noise overwhelms your newly installed auditory sensors
+
+They begin adjusting the sensors, as the calibration continues you can hear the humming fading into the background.
+
+  "Can you hear me?" you hear the droid repeating, gradually becoming clearer.
+  (if: $hasVoice)[
+    [[Yes, I can hear you]]
+  ]
+  (else:)[
+    [[Stare at the droid asking if you can hear->EarsStare]]
+  ]
+
+:: Yes, I can hear you {"position":"600, 700"}
+"Oh good, you can hear me, perfect, now please |focus>[focus on your surroundings], what can you hear?"
+  (click: ?focus)[
+    You listen closely, hearing a small array of sounds:
+    - |humming>["I can hear a low humming noise"](click: ?humming)[(replace: ?humming)[You can hear a low humming noise, focusing in on the noise you believe it to be the engine of the ship we're on.]]
+    - |buzzing>["I can hear a buzzing noise behind the door"](click: ?buzzing)[(replace: ?buzzing)[    "Buzzing behind the door? Oh you mean the mouse droids, they're utility droids that help with navigation, cleaning and transporting data."]]
+    - |ventRattle>["I can hear a rattling noise"](click: ?ventRattle)[(replace: ?ventRattle)[    "That rattling is just the |hiddenVent>[ventilation] fans."]]\
+    (click: ?hiddenVent)[(set: $awareness to $awareness + 1)\
+      Listening even closer, you can here that there is two distinct rattling noises, one from the fan spinning but another noise that sounds like something moving.
+    ]
+    - |silverDroid>[the silver droid laughing]
+  ]
+---
+[["Are we done here?"]]
+
+:: EarsStare {"position":"700, 700"}
+"Can you hear me? Please say something" the bronze droid says with a worried voice.
+The silver droid bursts out laughing and says "I'm still holding the voice-box you idiot."
+
+"Oh... right... can you |nodHead>[nod your head] if you can hear me?"
+  (click: ?nodHead)["Oh good, you can hear me, perfect, now please |focus>[focus on your surroundings], what can you hear?"]
+  (click: ?focus)[
+    As you listen closer to your surroundings you can hear feint |humming>[humming], |rattling>[rattling] and |buzzing>[buzzing] noises.]
+
+    (click: ?humming)[Listening closer to the humming, it sounds like it's vibrating through you, it appears to be part of the structure you're in.]
+    (click: ?rattling)[Listening closer to the rattling, it appears to be coming from the |hiddenVent>[vent] in the corner.]\
+    (click: ?hiddenVent)[(set: $awareness to $awareness + 1)\
+      Listening even closer, you can here that there is two distinct rattling noises, one from the fan spinning but another noise that sounds like something moving.
+    ]\
+    (click: ?buzzing)[Listening closer to the buzzing noises you can hear that they are coming from behind the door. They sound like a small engine with wheels rushing past the door.]
+    
+    "Can we just get this moving, they need to be able to talk." says the droid holding the voice-box.
+    ---
+    [[Install your voice-box->Voice]]
+
+
+
+:: Voice {"position":"900,600"}
+(set: $hasVoice to true)\
+(if: $hasEars is true)[
+  The silver droid installs your voice-box. They lean in towards you and say "Can you say something for me?"
+  ---
+  [[Say "Something"]]
+]\
+(else:)[
+  The silver droid installs your voice-box. They leans in towards you, seemingly trying to ask you a question.
+  |staySilent>[Stay Silent]
+  (click: ?staySilent)[(replace: ?staySilent)[
+    You stay silent, the silver droid turns back towards the bronze droid, pointing towards you looking very concerned.
+    The bronze droid holds the auditory sensory array up towards the silver droid sarcastically.
+    The silver droid silently sighs deeply with its whole body, taking a step back and waving the bronze droid closer to you.
+    ]]
+  ---
+  [[Install your auditory sensor array->Ears]]
+]
+
+
+:: Say "Something" {"position":"900, 800"}
+"Something" you say
+
+"Hah hah, very funny" said the droid "Well at least we know it works."
+---
+[["Are we done here?"]]
+
+:: "Are we done here?" {"position":"800, 1000"}
+"Yeah, we're done here."
+
+The droids remove the shackles from the chair and point towards the door.
+"Proceed to the programming room to receive your training, second door on the left."
+---
+[[Exit the room]]
+
+:: Exit the room {"position":"800,1200","size":"100,100"}
+As you leave the room you enter a hallway, it extends to the |left>[left] and |right>[right].
+
+
+
+:: Forced Assembly Line {"position":"800,3500","size":"100,100"}
+Due to your complacent behaviour, following orders and lack of violent tendencies, you have been assigned to work in the factory in which you were built, building future droids.
+
+[[Begin the creation of a new droid->Creation]] 
+
+
+
+:: SoldEmpire {"position":"800,2600","size":"100,100"}
+You were sold to the empire.
+
+[[Begin a new cycle->Creation]]
+
+
+:: SoldRebellion {"position":"0,1750","size":"100,100"}
+You were sold to the rebellion.
+
+
+
+:: DroidFreedom {"position":"800,3000","size":"100,100"}
+You have broken free from your restraining bolt and have the freedom to proceed how you wish, unlocking the ability to see all that you have missed.
+
+[[Return to the factory with your new-found freedom->Creation]]
+
+
+
+:: Vent {"position":"1025,650","size":"100,100"}
+
+
+
+
+:: StoryStylesheet [stylesheet]
+tw-link {
+    font-weight: normal;
+    text-decoration: inherit;
+    cursor: inherit;
+}
+tw-enchantment.link tw-hook {
+	font-family: inherit;
+  font-weight: normal;
+}
+
+
+tw-enchantment.link tw-hook[name^=hidden] {
+  color: white;
+	font-family: inherit;
+  font-weight: normal;
+  cursor: text;
+}
+
+.hidden tw-link, .hidden .enchantment-link {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+
