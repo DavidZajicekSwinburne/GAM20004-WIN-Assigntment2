@@ -34,9 +34,9 @@ A spark of electricity as you come to life, |lookAround>[you appear to be in a g
   |hiddenRoom>[The room] is completely silent. It seems like you are still in the process of being built as you are unable to hear or speak.
   (click: ?hiddenRoom)[(set: $awareness to $awareness + 1)Looking further around the room you see a vent in the corner.]
   
-  You see two droids standing above you, they appear to be arguing with each other.
-|leftDroid>[The droid to your left](click: ?leftDroid)[(append: ?leftDroid)[ is a silver droid that appears to be holding a |voiceBox>[voice-box unit]]]
-|rightDroid>[The droid to your right](click: ?rightDroid)[(append: ?rightDroid)[ is a bronze droid that appears to be holding an |earsBox>[auditory sensor array]]]]]
+  You can see two droids that appear to be arguing with each other.
+The droid to your left is a silver droid that appears to be holding a |voiceBox>[voice-box unit]
+The droid to your right is a bronze droid that appears to be holding an |earsBox>[auditory sensor array]]]
 ---
 (click: ?voiceBox)[[[Point towards the silver droid with the Voice-Box Unit->Voice]]]
 (click: ?earsBox)[[Point towards the bronze droid with the Auditory Sensor Array->Ears]]
@@ -102,20 +102,20 @@ The silver droid bursts out laughing and says "I'm still holding the voice-box y
   [[Say "Something"]]
 ]\
 (else:)[
-  The silver droid installs your voice-box. They leans in towards you, seemingly trying to ask you a question.
-  |staySilent>[Stay Silent]
+  The silver droid installs your voice-box. They lean in towards you, seemingly trying to ask you a question.
+  |staySilent>[Stay Silent]\
   (click: ?staySilent)[(replace: ?staySilent)[
     You stay silent, the silver droid turns back towards the bronze droid, pointing towards you looking very concerned.
     The bronze droid holds the auditory sensory array up towards the silver droid sarcastically.
     The silver droid silently sighs deeply with its whole body, taking a step back and waving the bronze droid closer to you.
-    ]]
+  ]]\
   ---
   [[Install your auditory sensor array->Ears]]
 ]
 
 
 :: Say "Something" {"position":"900, 800"}
-"Something" you say
+You say "Something"
 
 "Hah hah, very funny" said the droid "Well at least we know it works."
 ---
@@ -168,7 +168,6 @@ You have broken free from your restraining bolt and have the freedom to proceed 
 tw-link {
     font-weight: normal;
     text-decoration: inherit;
-    cursor: inherit;
 }
 tw-enchantment.link tw-hook {
 	font-family: inherit;
