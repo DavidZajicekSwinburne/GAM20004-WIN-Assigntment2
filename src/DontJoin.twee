@@ -11,9 +11,8 @@ Don't Join
 }
 
 :: Startup [startup] {"position":"800,0"}
-(set: $hasEars to false)\
-(set: $hasVoice to false)\
-(set: $awareness to 0)
+(set: $awareness to 0)\
+(set: $programmingComputerTampered to false)
 
 :: Start {"position":"800,200","size":"100,100"}
 #Don't Join
@@ -27,6 +26,8 @@ Don't Join
 
 
 :: Creation {"position":"800,400","size":"100,100"}
+(set: $hasEars to false)\
+(set: $hasVoice to false)\
 A spark of electricity as you come to life, |lookAround>[you appear to be in a grey room...](click: ?lookAround)[(append: ?lookAround)[
   
   Looking around you further, you appear to be shackled to a chair.
@@ -124,19 +125,79 @@ You say "Something"
 :: "Are we done here?" {"position":"800, 1000"}
 "Yeah, we're done here."
 
-The droids remove the shackles from the chair and point towards the door.
-"Proceed to the programming room to receive your training, second door on the left."
+The droids remove the shackles from the chair.
+"Proceed to the programming room to receive your training, second door on the left." said the droid, poiting towards the door.
 ---
 [[Exit the room]]
 
 :: Exit the room {"position":"800,1200","size":"100,100"}
-As you leave the room you enter a hallway, it extends to the |left>[left] and |right>[right].
+As you leave the room you enter a grey hallway that extends outward in front of you.
+You can see a |lockedDoor>[door on the right], and |doors>[two doors on the left].\
+(click: ?lockedDoor)[
 
+  The door on the right appears to be locked, the keypad appears to be damaged and is sparking.]\
+(click: ?doors)[
 
+  The |firstDoor>[first door] on the left has a |firstDoorKeypad>[keypad] with a |hiddenFirstDoorKeypad>[red light] on it.(click: ?firstDoor)[
+    The first door is locked and does not respond.]
+
+  The |secondDoor>[second door] on the left has a keypad with a green light on it.](click: ?secondDoor)[(replace: ?programmingRoom)[[[Enter the Programming Room->Programming Room 1]]]
+    The second door is unlocked and opens for you as you get closer.
+    You can clearly see a sign that says "Programming Room" above the keypad.]
+---
+|programmingRoom>[]
+
+:: Programming Room 1{"position":"800, 1400"}
+[\
+  You enter a room, similar to the room you were built in, there is a |chair>[chair] in the middle of the room, with a |computer>[computer] next to it and a |gonk>[GONK droid] in the corner.
+  (click: ?chair)[
+    Looking closer at the chair, it looks like it is hooked up to the |computer>[computer].
+  ]\
+  (click: ?computer)[
+    The |hiddenComputer>[Computer] appears to be connected to the |chair>[chair].
+  ](click: ?hiddenComputer)[Looking closer you can see a terminal port for a |scompLink>[scomp link] in the back of the computer.(click: ?scompLink)[
+    You tampered with the computer.(set: $programmingComputerTampered to true)]]
+  (click: ?gonk)[
+    You tap the GONK droid on the head politely, it makes happy GONK noises.]
+]\
+---
+[[Sit in the chair->Programming Room 2]]
+
+:: Programming Room 2 {"position":"800,1500"}
+[\
+  As you sit in the chair, the computer beside folds out a |console>[console].
+  (click: ?console)[
+    The console appears to have a terminal port that you can insert your |scompLink>[scomp link] in to.]
+  (click: ?scompLink)[
+    Inserting your scomp link into the port, you see |hiddenData>[data being transfered] into your memory banks.
+  (click: ?hiddenData)[
+    You notice that the data being transfered includes an |hiddenMessage>[encrypted message].(click: ?hiddenMessage)[
+      You attempt to decrypt the message, it says "TODO:".]
+  ]
+  You have been programmed to be able to build future droids, please return to the Droid Creation room in which you were built.
+  Use the code "2187" to access this room and get to work.(set: $codeLearned to "2187")
+
+  |unplug>[Unplug from the terminal.](click: ?unplug)[(replace: ?unplug)[You unplug yourself from the terminal and stand up.](replace: ?exit)[[[Exit the room->Hallway 2]]]]]
+]\
+---
+|exit>[]
+
+:: Hallway 2 {"position":"800,1600"}
+[\
+  As you exit the programming room you enter the hallway again.
+
+  Looking around the hallway you can only see two doors this time, the Programming Room door you just left and the |keypad>[Droid Creation room's door].
+  (click: ?keypad)[You key in the code $codeLearned into the door. The light on the keypad turns green and the door opens.(replace: ?droidCreation)[[[Start your job building new droids->Forced Assembly Line]]]]
+]\
+---
+|droidCreation>[]
 
 :: Forced Assembly Line {"position":"800,3500","size":"100,100"}
-Due to your complacent behaviour, following orders and lack of violent tendencies, you have been assigned to work in the factory in which you were built, building future droids.
-
+[\
+  You begin to blindly follow your programming, picking up an |hiddenSensor>[Auditory Sensor Array] and beginning your new life: working to build new droids.
+  (click: ?hiddenSensor)[(set: $awareness to $awareness + 1)You inject a piece of code into the Sensor Array, the next droid built will be able to notice things you may have missed.]
+]\
+---
 [[Begin the creation of a new droid->Creation]] 
 
 
