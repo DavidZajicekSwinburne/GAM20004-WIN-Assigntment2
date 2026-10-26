@@ -15,6 +15,9 @@ Don't Join
 (set: $programmingComputerTampered to false)\
 (set: $sensorTamper to false)
 
+:: Footer? I Hardly Know Her [footer] {"position: 900, 0"}
+(replace: ?Sidebar)[(link: "Restart")[(reload:)]]
+
 :: Start {"position":"800,200","size":"100,100"}
 #Don't Join
 |keywords>[Keywords] in the body will help you to explore the world. This could be |keywords>[investigating or interacting with objects] in the world.
