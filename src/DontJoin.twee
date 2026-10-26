@@ -14,10 +14,10 @@ Don't Join
 (set: $awareness to 0)\
 (set: $programmingComputerTampered to false)\
 (set: $sensorTamper to false)\
-(set: $showFeet to false)
+(set: $showFooter to false)
 
-:: Footer? I Hardly Know Her [footer] {"position: 900, 0"}
-(if: $showFeet)[(replace: ?Sidebar)[(link: "Restart")[(reload:)]]]
+:: Footer I Hardly Know Her [footer] {"position": "900, 0"}
+(if: $showFooter)[(replace: ?Sidebar)[(link: "Restart")[(reload:)]]]
 
 :: Start {"position":"800,200","size":"100,100"}
 #Don't Join
@@ -34,7 +34,7 @@ Don't Join
 (set: $hasEars to false)\
 (set: $hasVoice to false)\
 (set: $awareness to 0)(if: $sensorTamper)[(set: $awareness to 1)]\
-(set: $showFeet to true)
+(set: $showFooter to true)
 A spark of electricity as you come to life, |lookAround>[you appear to be in a grey room...](click: ?lookAround)[(append: ?lookAround)[
   
   Looking around you further, you appear to be shackled to a chair.

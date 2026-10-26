@@ -31,7 +31,7 @@ tw-hook[name^=hidden] {
 }</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-passagedata pid="1" name="Startup" tags="startup" position="800,0" size="100,100">(set: $awareness to 0)\
 (set: $programmingComputerTampered to false)\
 (set: $sensorTamper to false)\
-(set: $showFeet to false)</tw-passagedata><tw-passagedata pid="2" name="Footer? I Hardly Know Her" tags="footer" position="225,100" size="100,100">(if: $showFeet)[(replace: ?Sidebar)[(link: &quot;Restart&quot;)[(reload:)]]]</tw-passagedata><tw-passagedata pid="3" name="Start" tags="" position="800,200" size="100,100">#Don&#39;t Join
+(set: $showFooter to false)</tw-passagedata><tw-passagedata pid="2" name="Footer I Hardly Know Her" tags="footer" position="900, 0" size="100,100">(if: $showFooter)[(replace: ?Sidebar)[(link: &quot;Restart&quot;)[(reload:)]]]</tw-passagedata><tw-passagedata pid="3" name="Start" tags="" position="800,200" size="100,100">#Don&#39;t Join
 |keywords&gt;[Keywords] in the body will help you to explore the world. This could be |keywords&gt;[investigating or interacting with objects] in the world.
 
 (click: ?keywords)[|decisions&gt;[Decisions] will appear at the bottom of the screen below the line, these decisions cannot be undone and will move on from the current scene.]
@@ -41,7 +41,7 @@ tw-hook[name^=hidden] {
 \(click: ?investigating)[Investigating can reveal new choices and change the world state]</tw-passagedata><tw-passagedata pid="4" name="Creation" tags="" position="800,400" size="100,100">(set: $hasEars to false)\
 (set: $hasVoice to false)\
 (set: $awareness to 0)(if: $sensorTamper)[(set: $awareness to 1)]\
-(set: $showFeet to true)
+(set: $showFooter to true)
 A spark of electricity as you come to life, |lookAround&gt;[you appear to be in a grey room...](click: ?lookAround)[(append: ?lookAround)[
   
   Looking around you further, you appear to be shackled to a chair.
