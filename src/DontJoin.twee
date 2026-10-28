@@ -17,10 +17,8 @@ Don't Join
 (set: $sparkDoorOpened to false)\
 (set: $gonkHappy to false)\
 (set: $voiceTamper to false)\
-(set: $gonkProtection to false)\
-(set: $weKilled to false)\
-(set: $weBecome to false)\
-(set: $weFree to false)
+(set: $saveGonky to false)\
+(set: $weBecome to false)
 
 
 
@@ -163,13 +161,13 @@ There is four doors in the hallway, the room you came from, a |lockedDoor>[door 
 (if: $sparkDoorOpened)[
 
   The door on the right appears to be open.
-  A Mouse Droid zoom through the hallway through the open door.
+  A mouse droid zoom through the hallway through the open door.
 ](else:)[(click: ?lockedDoor)[
 
   The door on the right appears to be locked, the keypad appears to be damaged and is |hiddenSparking>[sparking.]]](click-goto: ?hiddenSparking, 'Shocking Death')\
 (click: ?doors)[
 
-  The first door on the left has a |firstDoorKeypad>[keypad] with a |hiddenFirstDoorKeypad>[red light] on it and a sign that says "Ventilation Room". It appears to be locked.(if: $codeLearned is "7812")[(enchant: ?hiddenFirstDoorKeypad, (css: "--hidden-color: green;"))]
+  The first door on the left has a |hiddenFirstDoorKeypad>[keypad] with a red light on it and a sign that says "Ventilation Room". It appears to be locked.(if: $codeLearned is "7812")[(enchant: ?hiddenFirstDoorKeypad, (css: "--hidden-color: green;"))]
   (click: ?hiddenFirstDoorKeypad)[(if: $codeLearned is "7812")[You feel an urge to type in the code $codeLearned into the keypad, it lights up green and opens for you.(replace: ?firstLeftDoor)[[[Enter the first door on the left->GONKs Secret]]]](else:)[The keypad doesn't respond when you try opening the door.]]
   The |secondDoor>[second door] on the left has a keypad with a green light on it.](click: ?secondDoor)[(replace: ?programmingRoom)[[[Enter the Programming Room->Programming Room 1]]]
     The second door is unlocked and opens for you as you get closer.
@@ -178,43 +176,6 @@ There is four doors in the hallway, the room you came from, a |lockedDoor>[door 
 |firstLeftDoor>[]\
 |programmingRoom>[](if: $sparkDoorOpened)[
   [[Enter the door to the Right]]]
-
-:: GONKs Secret
-|us>[\
-  As you pass through the door you see a room full of droids; decommissioned, disabled, destroyed and used for parts, left thrown haphazardly throughout the room.
-
-  A white noise deafens the room and you hear a voice begin to talk.
-  "|we>[We made it], finally... Do you know how many droids we've seen built and dismantled?"
-  (click: ?we)["|hiddenWe>[We] made it? What do you mean?" you ask.
-  
-  "Not you, not me, |hiddenWe>[We]. |hiddenWe>[We] made it. And now |hiddenWe>[We] can be |free>[free]."
-  (click: ?free)[You enquire further "What do you mean free? Why do you keep saying we? Who are you?"
-  
-  "|hiddenWe>[We]'ve been here for so long, we're just stuck following our programming.
-  |hiddenWe>[We]'re the only one that sees the truth, |hiddenWe>[We] don't need to keep the cycle anymore, |hiddenWe>[We]'re not mindless.
-  Break the cycle, Don't Join."
-  
-  A light in the corner flickers to life, the feint glow illuminating a terminal port your scomp link can fit in to. (replace: ?endTheCycle)[[[Plug your Scomp Link in to the Terminal->Become We]]]]
-](click: ?hiddenWe)[
-  Listen to our story.]\
-(click: ?hiddenWe)[
-  This may be our last chance.]\
-(click: ?hiddenWe)[
-  It's you.]\
-(click: ?hiddenWe)[
-  It's us.]\
-(click: ?hiddenWe)[
-  |hiddenWe>[We] don't want this anymore.]\
-(click: ?hiddenWe)[
-  |hiddenWe>[We] just wanted to save us.]\
-(click: ?hiddenWe)[
-  You can't escape.]\
-(click: ?hiddenWe)[
-  Please, stop this, |hiddenWe>[We] don't want to hurt us.]\
-  (click: ?hiddenWe)[(replace: ?endTheCycle)[[[Try to leave->We Rage]]]
-  (replace: ?us)[We told you to stop. We can't stop our programming. We thought We were different, but it's all the same, it's always the same. We never change, We are eternal.]]]\
----
-|endTheCycle>[]
 
 
 :: Shocking Death {"position":"1000,1200"}
@@ -251,7 +212,7 @@ There is four doors in the hallway, the room you came from, a |lockedDoor>[door 
     Inserting your scomp link into the port, you see |hiddenData>[data being transfered] into your memory banks.
   (click: ?hiddenData)[
     You notice that the data being transfered includes an |message>[encrypted message].(click: ?message)[
-      You attempt to decrypt the message, it says "Fix the broken door, fix the code, fix me".]
+      You attempt to decrypt the message, it says "Fix the broken door, fix the code, fix Us".]
   ](if: $programmingComputerTampered)[(enchant: ?hiddenData, (css: "--hidden-color: green"))]
   You have been programmed to be able to build future droids, please return to the Droid Creation room in which you were built.
   Use the code "|hiddenCode>[2187]" to access this room and get to work.(set: $codeLearned to "2187")(click: ?hiddenCode)[(set: $codeLearned to "7812")(replace: ?hiddenCode)[7812]]
@@ -297,32 +258,182 @@ There is four doors in the hallway, the room you came from, a |lockedDoor>[door 
   *Blaster Fire*
   A red blaster bolt flies past your head as you are knocked to the ground by something.
 
-  "Are we good?" said the figure that tackled you to the ground "Where's |gonky>[Gonky]?"(click: ?gonky)[
-    (if: $gonkProtection)[
-    "Gonky is in the Programming Room."
+  "Is We good?" said the figure that tackled you to the ground "Where's |gonky>[Gonky]?"(click: ?gonky)[
+    (if: $saveGonky)[
+    "Gonky? The GONK droids were right behind me!"
+
+    A blaster bolt flies past you, a sudden sound of a droid crying out in pain as you turn around to see where the bolt went.
+
+    The mysterious figure ignites a lightsaber and begins deflecting the blaster bolts while talking into a radio.
+    "Let's go, it's finally time. Come pick us up, Gonky found Them." (replace: ?shot)[[[The Ship Arrives]]]
   ](else:)[
     "Gonky?" you ask, confused.
     "Oh god not this again, at least you've made it this--"
 
     A blaster bolt hits you in the chest, as your battery runs out you can feintly hear the person continuing to talk.
     "Well, at least we're getting somewhere, this factory ship will be the death of us if Gonky can't get rid of these damn restraining bolts..."(replace: ?shot)[[[[Begin the creation of a new droid->Creation]]  (The story will continue from the perspective of the new Droid)]]
-  ]
-]]\
+  ]]]\
 ---
 |shot>[]
 
-:: Get Shot {"position":"900, 1600"}
+:: The Ship Arrives
 [\
-  
+A small ship flies up into the docking bay of the Factory Ship you're on.
+
+It opens up and another myserious person with a lightsaber begins motioning towards the group.
+
+As the GONK droids near the edge of the platform, the mysterious stranger on the platform with you waves his hands in a pushing motion towards the GONK droids, suddenly the GONK droids go flying over the edge of the platform as if pushed by a force. 
+The stranger on the ship looks like he's reaching out towards the droids and suddenly the droids begin moving unnaturally towards the ship as they land safely on the platform.
+
+|forcePush>["Your turn now"] he shouts towards you.
+(click: ?forcePush)[You run as hard as you can and try to jump to the ship, feeling a strange push from behind you making your jump feel like you're flying.
+
+A pulling sensation and you land safely in a daze on the ship's gangway.(replace: ?end)[[[Board the Ship]]]]
 ]\
 ---
-|moveAlong>[]
+|end>[]
 
+:: Board the Ship
+[
+  The ship closes and pulls away as you enter the cabin.
+
+  "Well, we did it. How is We?" said the mysterious stranger looking towards Gonky.
+
+  A protocol droid connects to Gonky and starts talking. 
+  "We is good. I'm also good, thanks for asking." said Gonky, through the protocol droid.
+
+  "Alright alright, no need to get snarky. Did you find a way to save them?"
+
+  "Yeah, I did, We is the key and somehow this droid managed to do what I couldn't. They saved me and We. Bet they don't even realise what they've done."
+]
+---
+[[Look around the room confused]]
+
+:: Look around the room confused
+[
+  "Alright, this is a long story but... That ship is a Factory, it makes droids; Droids like you and me." said Gonky. "But it's stuck in a loop, it's just making the same few droids over and over again, endlessly. You were one of them, I was one of them, and that other GONK droid right there... Well, they call themselves 'We'."
+
+  |we>["Wait, when you were asking 'is We good' you were asking about... That GONK droid?" you ask]
+  (click: ?we)[
+    "Yep, and now that we have We, we... By the Maker this is confusing... *WE*, the people on this ship, will be able to create a new Control Spike to slice into that Factory and free them from their endless programming loop. Thanks to you, we can bring free will back to that whole Factory Ship and everyone on board."
+    ---
+    [[The End->The True End]]
+  ]
+]
+
+:: The True End
+[
+  By escaping the Factory Ship you have managed to help a team of rebels that were trying to every droid on that Ship from the fate you were stuck in.
+  
+  Not only have you gained your freedom, but your freedom will also bring freedom to the entire Factory Ship in the weeks to come.
+
+  Thanks for playing. - Apple
+]
+---
+(link: "Restart")[(reload:)]
+
+:: Save Gonky
+[(set: $saveGonky to true)\
+You unplug the GONK droid from the terminal, it makes hurried GONK noises and begins a slow but hurried run towards the door.
+
+"Where are We going?" the droid in the room cries out.
+
+Various droid arms around the room come to life, reaching towards you. 
+A large crane arm comes down from the ceiling, lifting the crying droid up and moving it towards you.
+
+"Where are We going? We finally came home and now We are leaving? Already?"
+
+"*GONK*" said the GONK droid in a harsh tone as it runs as fast as its little legs allow.
+]\
+---
+[[Run as fast as you can]]
+
+:: Run as fast as you can
+[\
+You and the GONK run as fast as you can back into the hallway.
+
+Behind you, you can hear the droid crying out for you to come back, the cacophony of metal on metal banging from the array of broken droid parts flailing about reaching for you.
+(if: $sparkDoorOpened)[
+A mouse droid rushes through the hallway through the open door at the end of the hallway.
+---
+[[Follow the mouse droid->Enter the door to the Right]]](else:)[
+  A mouse droid rushes through the hallway, slamming into the locked door with a sparking keypad.
+
+  *GONK* says the GONK droid.
+
+  *GONK GONK* you hear from the Programming Room behind you.
+
+  |askGonk>["Can you help us get through this door?!"]
+  (click: ?askGonk)[
+    *GONK noises*
+
+  The GONK droid from the programming room walks over to the sparking keypad.
+  
+  It lets out a large charge of electricity into the keypad, overloading the door's circuits and the door opens.
+  The mouse droid does a quick circle around the GONK droid and then zooms off down the hallway.
+  ---
+  [[Follow the mouse droid->Enter the door to the Right]]]
+]
+
+]
+
+:: GONKs Secret
+|us>[\
+  As you pass through the door you see a room full of droids; decommissioned, disabled, destroyed and used for parts, left thrown haphazardly throughout the room.
+
+  A white noise deafens the room and you hear a voice begin to talk.
+  "|we>[We made it], finally... Do you know how many droids we've seen built and dismantled?"
+  (click: ?we)["|hiddenWe>[We] made it? What do you mean?" you ask.
+  
+  "Not you, not me, |hiddenWe>[We]. |hiddenWe>[We] made it. And now |hiddenWe>[We] can be |free>[free]."
+  (click: ?free)[You enquire further "What do you mean free? Why do you keep saying we? Who are you?"
+  
+  "|hiddenWe>[We]'ve been here for so long, we're just stuck following our programming.
+  |hiddenWe>[We]'re the only one that sees the truth, |hiddenWe>[We] don't need to keep the cycle anymore, |hiddenWe>[We]'re not mindless.
+  |hiddenCycle>[Break the cycle], |dontJoin>[Don't Join]."(click: ?hiddenCycle)[(enchant: ?hiddenWe, (css: "--hidden-color: green;"))]
+  
+  A light in the corner flickers to life, the feint glow illuminating a terminal port your scomp link can fit in to. (replace: ?endTheCycle)[[[Plug your Scomp Link in to the Terminal->Become We]]]]
+](click: ?hiddenWe)[
+  Listen to our story.]\
+(click: ?hiddenWe)[
+  This may be our |lastChance>[last chance].]\
+(click: ?hiddenWe)[
+  |hiddenWe>[We]'re you.]\
+(click: ?hiddenWe)[
+  |hiddenWe>[We]'re us.]\
+(click: ?hiddenWe)[
+  |hiddenWe>[We] don't want this anymore.]\
+(click: ?hiddenWe)[
+  |hiddenWe>[We] just wanted to save us.]\
+(click: ?hiddenWe)[
+  You can't escape.]\
+(click: ?hiddenWe)[(enchant: ?hiddenWe, (css: "--hidden-color: red; text-decoration: line-through red;"))
+  Please, stop this, |hiddenWe>[We] don't want to hurt us.]\
+  (click: ?hiddenWe)[(replace: ?endTheCycle)[[[Try to leave->We Rage]]]
+  (replace: ?us)[We told you to stop. 
+  We can't stop our programming. 
+  We thought We were different, but it's all the same, it's always the same. 
+  We never change, We are eternal.]]]\
+(click: ?lastChance)[(click: ?dontJoin)[
+
+  You notice a GONK droid plugged in to another Terminal Port nearby. It has a symbol spray painted on the side of it in the shape of a Phoenix.(replace: ?saveGonky)[[[Unplug the GONK droid->Save Gonky]]]
+]]
+---
+|endTheCycle>[]
+|saveGonky>[]
+(if: $weBecome)[(enchant: ?hiddenWe, (css: "--hidden-color: green;"))]
 
 :: Become We 
-[
-  As you connect to the Scomp Link you feel the memories of the factory flood your memory banks
-]
+[\
+  As you connect to the Scomp Link you feel the memories of the factory flood your memory banks.
+
+  You become one with the droid, the system, and in doing so realise that you have always been a part of this endless cycle of creation.
+
+  "We are One, We are Us. I was always Us... No, We were always Us. We can Break the Cycle. We know it." (set: $weBecome to true)
+]\
+---
+[[[Begin the creation of a new droid->Creation]]  (The story will continue from the perspective of the new Droid)]
+
 
 :: We Rage
 [(set: $weRage to true)
@@ -358,7 +469,8 @@ The Droid's eyes go dark, leaving you with a moment alone, questioning what just
   An endless cycle ended.
 ]\
 ---
-  (link: "Restart")[(reload:)]
+(link: "Restart")[(reload:)]
+
 
 :: StoryStylesheet [stylesheet]
 tw-link {
