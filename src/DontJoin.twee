@@ -102,7 +102,7 @@ The left droid bursts out laughing and says "I'm still holding the voice-box you
 "Oh... right... can you |nodHead>[nod your head] if you can hear me?"
   (click: ?nodHead)["Oh good, you can hear me, perfect, now please |focus>[focus on your surroundings], what can you hear?"]
   (click: ?focus)[(replace: ?voice)[[[Install your voice-box->Voice]]]
-    As you listen closer to your surroundings you can hear feint |humming>[humming], |rattling>[rattling] and |buzzing>[buzzing] noises.]
+    As you listen closer to your surroundings you can hear faint |humming>[humming], |rattling>[rattling] and |buzzing>[buzzing] noises.]
     "Can we just get this moving, they need to be able to talk." says the droid holding the voice-box.
 
     (click: ?humming)[
@@ -272,7 +272,7 @@ There is four doors in the hallway, the room you came from, a |lockedDoor>[door 
     "Gonky?" you ask, confused.
     "Oh god not this again, at least you've made it this--"
 
-    A blaster bolt hits you in the chest, as your battery runs out you can feintly hear the person continuing to talk.
+    A blaster bolt hits you in the chest, as your battery runs out you can faintly hear the person continuing to talk.
     "Well, at least we're getting somewhere, this factory ship will be the death of us if Gonky can't get rid of these damn restraining bolts..."(replace: ?shot)[[[[Begin the creation of a new droid->Creation]]  (The story will continue from the perspective of the new Droid)]]
   ]]]\
 ---
@@ -394,7 +394,7 @@ A mouse droid rushes through the hallway through the open door at the end of the
   |hiddenWe>[We]'re the only one that sees the truth, |hiddenWe>[We] don't need to keep the cycle anymore, |hiddenWe>[We]'re not mindless.
   |hiddenCycle>[Break the cycle], |dontJoin>[Don't Join]."(click: ?hiddenCycle)[(enchant: ?hiddenWe, (css: "--hidden-color: green;"))]
   
-  A light in the corner flickers to life, the feint glow illuminating a terminal port your scomp link can fit in to. (replace: ?endTheCycle)[[[Plug your Scomp Link in to the Terminal->Become We]]]]
+  A light in the corner flickers to life, the faint glow illuminating a terminal port your scomp link can fit in to. (replace: ?endTheCycle)[[[Plug your Scomp Link in to the Terminal->Become We]]]]
 ](click: ?hiddenWe)[
   Listen to our story.]\
 (click: ?hiddenWe)[
