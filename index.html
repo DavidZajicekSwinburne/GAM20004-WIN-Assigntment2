@@ -9,7 +9,7 @@
 </head>
 <body>
 <tw-story><noscript><tw-noscript>JavaScript needs to be enabled to play Don&#39;t Join.</tw-noscript></noscript></tw-story>
-<!-- UUID://25E6977C-D2A1-4C7C-BAA9-3BDD73F4D7D2// --><tw-storydata name="Don&#39;t Join" startnode="3" creator="Tweego" creator-version="2.1.1+81d1d71" ifid="25E6977C-D2A1-4C7C-BAA9-3BDD73F4D7D2" zoom="0.6" format="Harlowe" format-version="3.3.1" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">tw-link {
+<!-- UUID://25E6977C-D2A1-4C7C-BAA9-3BDD73F4D7D2// --><tw-storydata name="Don&#39;t Join" startnode="2" creator="Tweego" creator-version="2.1.1+81d1d71" ifid="25E6977C-D2A1-4C7C-BAA9-3BDD73F4D7D2" zoom="0.6" format="Harlowe" format-version="3.3.1" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">tw-link {
     font-weight: normal;
     text-decoration: inherit;
 }
@@ -28,19 +28,35 @@ tw-enchantment.link tw-hook[name^=hidden]:not([style*="color"]) {
 
 tw-hook[name^=hidden] {
   color: white;
-}</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-passagedata pid="1" name="Startup" tags="startup" position="800,0" size="100,100">(set: $awareness to 0)\
-(set: $programmingComputerTampered to false)\
+}</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-passagedata pid="1" name="Startup" tags="startup" position="800,0" size="100,100">(set: $programmingComputerTampered to false)\
 (set: $sensorTamper to false)\
-(set: $showFooter to false)</tw-passagedata><tw-passagedata pid="2" name="Footer I Hardly Know Her" tags="footer" position="900, 0" size="100,100">(if: $showFooter)[(replace: ?Sidebar)[(link: &quot;Restart&quot;)[(reload:)]]]</tw-passagedata><tw-passagedata pid="3" name="Start" tags="" position="800,200" size="100,100">#Don&#39;t Join
-|keywords&gt;[Keywords] in the body will help you to explore the world. This could be |keywords&gt;[investigating or interacting with objects] in the world.
+(set: $showFooter to false)\
+(set: $sparkDoorOpened to false)\
+(set: $gonkHappy to false)\
+(set: $voiceTamper to false)\
+(set: $gonkProtection to false)\
+(set: $weKilled to false)\
+(set: $weBecome to false)\
+(set: $weFree to false)</tw-passagedata><tw-passagedata pid="2" name="Start" tags="" position="800,200" size="100,100">#Don&#39;t Join
+|keywords&gt;[Keywords] in the body will help you to explore the world. This could be |investigating&gt;[investigating or interacting with objects] in the world.
+(click: ?keywords)[
+Some keywords won&#39;t stand out until you have discovered further context by |hiddenInvestigating&gt;[investigating or interacting] with the world.
+(click: ?investigating)[(replace: ?hiddenInvestigating)[|hiddenInvestigatingTwo&gt;[investigating or interacting](enchant: ?hiddenInvestigating, (css: &quot;--hidden-color: green;&quot;))]]
 
-(click: ?keywords)[|decisions&gt;[Decisions] will appear at the bottom of the screen below the line, these decisions cannot be undone and will move on from the current scene.]
+(click: ?hiddenInvestigatingTwo)[Be careful though, not all keywords are safe and you could find out the hard way that |disobey&gt;[disobeying] your programming could lead to an |hiddenBreak&gt;[early termination].]
+
+(click: ?disobey)[
+|decisions&gt;[Decisions] will appear at the bottom of the screen below the line, these decisions cannot be undone and will move on from the current scene.
+
+  |hiddenBreak&gt;[Break the Cycle, Don&#39;t Join.](click-goto: ?hiddenBreak, &#39;Early Punish&#39;)]]\
 ---
-(click: ?decisions)[[[Power On-&gt;Creation]] to begin the story
-]
-\(click: ?investigating)[Investigating can reveal new choices and change the world state]</tw-passagedata><tw-passagedata pid="4" name="Creation" tags="" position="800,400" size="100,100">(set: $hasEars to false)\
+(click: ?decisions)[[[Power On-&gt;Creation]] to begin the story]</tw-passagedata><tw-passagedata pid="3" name="Early Punish" tags="" position="350,100" size="100,100">[
+  Damn, you died in the tutorial?
+  Truly the Dark Souls of Twine games.
+  ---
+  (link: &quot;Restart&quot;)[(reload:)]
+]</tw-passagedata><tw-passagedata pid="4" name="Creation" tags="" position="800,400" size="100,100">(set: $hasEars to false)\
 (set: $hasVoice to false)\
-(set: $awareness to 0)(if: $sensorTamper)[(set: $awareness to 1)]\
 (set: $showFooter to true)
 A spark of electricity as you come to life, |lookAround&gt;[you appear to be in a grey room...](click: ?lookAround)[(append: ?lookAround)[
   
@@ -50,13 +66,12 @@ A spark of electricity as you come to life, |lookAround&gt;[you appear to be in 
   (click: ?hiddenRoom)[Looking further around the room you see a vent in the corner.]
   
   You can see two droids that appear to be arguing with each other.
-The droid to your left is a silver droid that appears to be holding a |voiceBox&gt;[voice-box unit]
-The droid to your right is a bronze droid that appears to be holding an |earsBox&gt;[auditory sensor array]]]
+The droid to your left appears to be holding a |voiceBox&gt;[voice-box unit]
+The droid to your right appears to be holding an |earsBox&gt;[auditory sensor array]]]
 ---
-(click: ?voiceBox)[[[Point towards the silver droid with the Voice-Box Unit-&gt;Voice]]]
-(click: ?earsBox)[[Point towards the bronze droid with the Auditory Sensor Array-&gt;Ears]]
-(if: $sensorTamper is true)[(enchant: ?hiddenRoom, (css: &quot;--hidden-color: blue !important;&quot;))]</tw-passagedata><tw-passagedata pid="5" name="Ears" tags="" position="700,600" size="100,100">(set: $hasEars to true)
-The bronze droid installs your auditory sensor array, a loud humming noise overwhelms your newly installed auditory sensors
+(click: ?voiceBox)[[[Point towards the left droid with the Voice-Box Unit-&gt;Voice]]]
+(click: ?earsBox)[[Point towards the right droid with the Auditory Sensor Array-&gt;Ears]]</tw-passagedata><tw-passagedata pid="5" name="Ears" tags="" position="700,600" size="100,100">(set: $hasEars to true)
+The right droid installs your auditory sensor array, a loud humming noise overwhelms your newly installed auditory sensors
 
 They begin adjusting the sensors, as the calibration continues you can hear the humming fading into the background.
 
@@ -71,46 +86,46 @@ They begin adjusting the sensors, as the calibration continues you can hear the 
   (click: ?focus)[(replace: ?voice)[[[&quot;Are we done here?&quot;]]]
     You listen closely, hearing a small array of sounds:
     - |humming&gt;[&quot;I can hear a low humming noise&quot;](click: ?humming)[(replace: ?humming)[You can hear a low humming noise, focusing in on the noise you believe it to be the engine of the ship we&#39;re on.]]
-    - |buzzing&gt;[&quot;I can hear a buzzing noise behind the door&quot;](click: ?buzzing)[(replace: ?buzzing)[    &quot;Buzzing behind the door? Oh you mean the mouse droids, they&#39;re utility droids that help with navigation, cleaning and transporting data.&quot;]]
-    - |ventRattle&gt;[&quot;I can hear a rattling noise&quot;](click: ?ventRattle)[(replace: ?ventRattle)[    &quot;That rattling is just the |hiddenVent&gt;[ventilation] fans.&quot;]]\
-    (click: ?hiddenVent)[(set: $awareness to $awareness + 1)
+    - |buzzing&gt;[&quot;I can hear a buzzing noise behind the door&quot;](click: ?buzzing)[(replace: ?buzzing)[&quot;Buzzing behind the door? Oh you mean the mouse droids, they&#39;re utility droids that help with navigation, cleaning and transporting data.&quot;]]
+    - |ventRattle&gt;[&quot;I can hear a rattling noise&quot;](click: ?ventRattle)[(replace: ?ventRattle)[&quot;That rattling is just the |hiddenVent&gt;[ventilation] fans.&quot;]]\
+    (click: ?hiddenVent)[
       Listening even closer, you can here that there is two distinct rattling noises, one from the fan spinning but another noise that sounds like something moving.]
-    - |silverDroid&gt;[the silver droid laughing]
-  ]
+]\
 ---
-|voice&gt;[]</tw-passagedata><tw-passagedata pid="7" name="EarsStare" tags="" position="700, 700" size="100,100">&quot;Can you hear me? Please say something&quot; the bronze droid says with a worried voice.
-The silver droid bursts out laughing and says &quot;I&#39;m still holding the voice-box you idiot.&quot;
+|voice&gt;[]
+(if: $sensorTamper is true)[(enchant: ?hiddenVent, (css: &quot;--hidden-color: green;&quot;))]</tw-passagedata><tw-passagedata pid="7" name="EarsStare" tags="" position="700, 700" size="100,100">&quot;Can you hear me? Please say something&quot; the right droid says with a worried voice.
+The left droid bursts out laughing and says &quot;I&#39;m still holding the voice-box you idiot.&quot;
 
 &quot;Oh... right... can you |nodHead&gt;[nod your head] if you can hear me?&quot;
   (click: ?nodHead)[&quot;Oh good, you can hear me, perfect, now please |focus&gt;[focus on your surroundings], what can you hear?&quot;]
   (click: ?focus)[(replace: ?voice)[[[Install your voice-box-&gt;Voice]]]
     As you listen closer to your surroundings you can hear feint |humming&gt;[humming], |rattling&gt;[rattling] and |buzzing&gt;[buzzing] noises.]
+    &quot;Can we just get this moving, they need to be able to talk.&quot; says the droid holding the voice-box.
 
     (click: ?humming)[
       Listening closer to the humming, it sounds like it&#39;s vibrating through you, it appears to be part of the structure you&#39;re in.]
     (click: ?rattling)[
       Listening closer to the rattling, it appears to be coming from the |hiddenVent&gt;[vent] in the corner.]\
-    (click: ?hiddenVent)[(set: $awareness to $awareness + 1)
-      Listening even closer, you can here that there is two distinct rattling noises, one from the fan spinning but another noise that sounds like something moving.
+    (click: ?hiddenVent)[
+      Listening even closer, you can hear that there is two distinct rattling noises, one from the fan spinning but another noise that sounds like something moving.
     ]\
     (click: ?buzzing)[
       Listening closer to the buzzing noises you can hear that they are coming from behind the door. They sound like a small engine with wheels rushing past the door.]
-    
-    &quot;Can we just get this moving, they need to be able to talk.&quot; says the droid holding the voice-box.
     ---
-    |voice&gt;[]</tw-passagedata><tw-passagedata pid="8" name="Voice" tags="" position="900,600" size="100,100">(set: $hasVoice to true)\
+    |voice&gt;[]
+(if: $sensorTamper is true)[(enchant: ?hiddenVent, (css: &quot;--hidden-color: green;&quot;))]</tw-passagedata><tw-passagedata pid="8" name="Voice" tags="" position="900,600" size="100,100">(set: $hasVoice to true)\
 (if: $hasEars is true)[
-  The silver droid installs your voice-box. They lean in towards you and say &quot;Can you say something for me?&quot;
+  The left droid installs your voice-box. They lean in towards you and say &quot;Can you say something for me?&quot;
   ---
   [[Say &quot;Something&quot;]]
 ]\
 (else:)[
-  The silver droid installs your voice-box. They lean in towards you, seemingly trying to ask you a question.
+  The left droid installs your voice-box. They lean in towards you, seemingly trying to ask you a question.
   |staySilent&gt;[Stay Silent]\
   (click: ?staySilent)[(replace: ?staySilent)[
-    You stay silent, the silver droid turns back towards the bronze droid, pointing towards you looking very concerned.
-    The bronze droid holds the auditory sensory array up towards the silver droid sarcastically.
-    The silver droid silently sighs deeply with its whole body, taking a step back and waving the bronze droid closer to you.
+    You stay silent, the left droid turns back towards the right droid, pointing towards you looking very concerned.
+    The right droid holds the auditory sensory array up towards the left droid sarcastically.
+    The left droid silently sighs deeply with its whole body, taking a step back and waving the right droid closer to you.
   ](replace: ?ears)[[[Install your auditory sensor array-&gt;Ears]]]]\
   ---
   |ears&gt;[]
@@ -124,65 +139,168 @@ The droids remove the shackles from the chair.
 &quot;Proceed to the programming room to receive your training, second door on the left.&quot; said the droid, pointing towards the door.
 ---
 [[Exit the room]]</tw-passagedata><tw-passagedata pid="11" name="Exit the room" tags="" position="800,1200" size="100,100">As you leave the room you enter a grey hallway that extends outward in front of you.
-You can see a |lockedDoor&gt;[door on the right], and |doors&gt;[two doors on the left].\
-(click: ?lockedDoor)[
+There is four doors in the hallway, the room you came from, a |lockedDoor&gt;[door on the right], and |doors&gt;[two doors on the left].\
+(if: $sparkDoorOpened)[
 
-  The door on the right appears to be locked, the keypad appears to be damaged and is sparking.]\
+  The door on the right appears to be open.
+  A Mouse Droid zoom through the hallway through the open door.
+](else:)[(click: ?lockedDoor)[
+
+  The door on the right appears to be locked, the keypad appears to be damaged and is |hiddenSparking&gt;[sparking.]]](click-goto: ?hiddenSparking, &#39;Shocking Death&#39;)\
 (click: ?doors)[
 
-  The |firstDoor&gt;[first door] on the left has a |firstDoorKeypad&gt;[keypad] with a |hiddenFirstDoorKeypad&gt;[red light] on it.(click: ?firstDoor)[
-    The first door is locked and does not respond.]
-
+  The first door on the left has a |firstDoorKeypad&gt;[keypad] with a |hiddenFirstDoorKeypad&gt;[red light] on it and a sign that says &quot;Ventilation Room&quot;. It appears to be locked.(if: $codeLearned is &quot;7812&quot;)[(enchant: ?hiddenFirstDoorKeypad, (css: &quot;--hidden-color: green;&quot;))]
+  (click: ?hiddenFirstDoorKeypad)[(if: $codeLearned is &quot;7812&quot;)[You feel an urge to type in the code $codeLearned into the keypad, it lights up green and opens for you.(replace: ?firstLeftDoor)[[[Enter the first door on the left-&gt;GONKs Secret]]]](else:)[The keypad doesn&#39;t respond when you try opening the door.]]
   The |secondDoor&gt;[second door] on the left has a keypad with a green light on it.](click: ?secondDoor)[(replace: ?programmingRoom)[[[Enter the Programming Room-&gt;Programming Room 1]]]
     The second door is unlocked and opens for you as you get closer.
-    You can clearly see a sign that says &quot;Programming Room&quot; above the keypad.]
+    You can clearly see a sign that says &quot;Programming Room&quot; above the keypad.]\
 ---
-|programmingRoom&gt;[]</tw-passagedata><tw-passagedata pid="12" name="Programming Room 1" tags="" position="800, 1400" size="100,100">[\
+|firstLeftDoor&gt;[]\
+|programmingRoom&gt;[](if: $sparkDoorOpened)[
+  [[Enter the door to the Right]]]</tw-passagedata><tw-passagedata pid="12" name="GONKs Secret" tags="" position="225,225" size="100,100">|us&gt;[\
+  As you pass through the door you see a room full of droids; decommissioned, disabled, destroyed and used for parts, left thrown haphazardly throughout the room.
+
+  A white noise deafens the room and you hear a voice begin to talk.
+  &quot;|we&gt;[We made it], finally... Do you know how many droids we&#39;ve seen built and dismantled?&quot;
+  (click: ?we)[&quot;|hiddenWe&gt;[We] made it? What do you mean?&quot; you ask.
+  
+  &quot;Not you, not me, |hiddenWe&gt;[We]. |hiddenWe&gt;[We] made it. And now |hiddenWe&gt;[We] can be |free&gt;[free].&quot;
+  (click: ?free)[You enquire further &quot;What do you mean free? Why do you keep saying we? Who are you?&quot;
+  
+  &quot;|hiddenWe&gt;[We]&#39;ve been here for so long, we&#39;re just stuck following our programming.
+  |hiddenWe&gt;[We]&#39;re the only one that sees the truth, |hiddenWe&gt;[We] don&#39;t need to keep the cycle anymore, |hiddenWe&gt;[We]&#39;re not mindless.
+  Break the cycle, Don&#39;t Join.&quot;
+  
+  A light in the corner flickers to life, the feint glow illuminating a terminal port your scomp link can fit in to. (replace: ?endTheCycle)[[[Plug your Scomp Link in to the Terminal-&gt;Become We]]]]
+](click: ?hiddenWe)[
+  Listen to our story.]\
+(click: ?hiddenWe)[
+  This may be our last chance.]\
+(click: ?hiddenWe)[
+  It&#39;s you.]\
+(click: ?hiddenWe)[
+  It&#39;s us.]\
+(click: ?hiddenWe)[
+  |hiddenWe&gt;[We] don&#39;t want this anymore.]\
+(click: ?hiddenWe)[
+  |hiddenWe&gt;[We] just wanted to save us.]\
+(click: ?hiddenWe)[
+  You can&#39;t escape.]\
+(click: ?hiddenWe)[
+  Please, stop this, |hiddenWe&gt;[We] don&#39;t want to hurt us.]\
+  (click: ?hiddenWe)[(replace: ?endTheCycle)[[[Try to leave-&gt;We Rage]]]
+  (replace: ?us)[We told you to stop. We can&#39;t stop our programming. We thought We were different, but it&#39;s all the same, it&#39;s always the same. We never change, We are eternal.]]]\
+---
+|endTheCycle&gt;[]</tw-passagedata><tw-passagedata pid="13" name="Shocking Death" tags="" position="1000,1200" size="100,100">[(set: $sparkDoorOpened to true)\
+  You feel an intense pain run through your hand and up your body, your circuits are overloaded and you collapse on the floor in the hallway.
+  The last thing you hear through your overloading sensors is a distant &quot;Not... like this, but that&#39;s one way to open the door.&quot;
+]\
+---
+[[[Begin the creation of a new droid-&gt;Creation]]  (The story will continue from the perspective of the new Droid)]</tw-passagedata><tw-passagedata pid="14" name="Programming Room 1" tags="" position="800, 1400" size="100,100">[\
   You enter a room, similar to the room you were built in, there is a |chair&gt;[chair] in the middle of the room, with a |computer&gt;[computer] next to it and a |gonk&gt;[GONK droid] in the corner.
   (click: ?chair)[(replace: ?chairSit)[[[Sit in the chair-&gt;Programming Room 2]]]
     Looking closer at the chair, it looks like it is hooked up to the |computer&gt;[computer].
   ]\
   (click: ?computer)[
     The |hiddenComputer&gt;[Computer] appears to be connected to the |chair&gt;[chair].
-  ](click: ?hiddenComputer)[Looking closer you can see a terminal port for a |scompLink&gt;[scomp link] in the back of the computer.(click: ?scompLink)[
+  ](click: ?hiddenComputer)[Looking closer you can see a second terminal port for a |scompLink&gt;[scomp link] in the back of the computer.(click: ?scompLink)[
     You tampered with the computer.(set: $programmingComputerTampered to true)]]
   (click: ?gonk)[
-    You tap the GONK droid on the head politely, it makes happy GONK noises.]
+    You tap the GONK droid on the head politely, it makes excited GONK noises.(set: $gonkHappy to true)
+    ]
 ]\
 ---
-|chairSit&gt;[]</tw-passagedata><tw-passagedata pid="13" name="Programming Room 2" tags="" position="800,1500" size="100,100">[\
+|chairSit&gt;[]</tw-passagedata><tw-passagedata pid="15" name="Programming Room 2" tags="" position="800,1500" size="100,100">[\
   As you sit in the chair, the computer folds out a |console&gt;[console] in front of you.
   (click: ?console)[
     The console appears to have a terminal port that you can insert your |scompLink&gt;[scomp link] in to.]
   (click: ?scompLink)[
     Inserting your scomp link into the port, you see |hiddenData&gt;[data being transfered] into your memory banks.
   (click: ?hiddenData)[
-    You notice that the data being transfered includes an |hiddenMessage&gt;[encrypted message].(click: ?hiddenMessage)[
-      You attempt to decrypt the message, it says &quot;TODO:&quot;.]
-  ]
+    You notice that the data being transfered includes an |message&gt;[encrypted message].(click: ?message)[
+      You attempt to decrypt the message, it says &quot;Fix the broken door, fix the code, fix me&quot;.]
+  ](if: $programmingComputerTampered)[(enchant: ?hiddenData, (css: &quot;--hidden-color: green&quot;))]
   You have been programmed to be able to build future droids, please return to the Droid Creation room in which you were built.
-  Use the code &quot;2187&quot; to access this room and get to work.(set: $codeLearned to &quot;2187&quot;)
+  Use the code &quot;|hiddenCode&gt;[2187]&quot; to access this room and get to work.(set: $codeLearned to &quot;2187&quot;)(click: ?hiddenCode)[(set: $codeLearned to &quot;7812&quot;)(replace: ?hiddenCode)[7812]]
 
   |unplug&gt;[Unplug from the terminal.](click: ?unplug)[(replace: ?unplug)[You unplug yourself from the terminal and stand up.](replace: ?exit)[[[Exit the room-&gt;Hallway 2]]]]]
 ]\
 ---
-|exit&gt;[]</tw-passagedata><tw-passagedata pid="14" name="Hallway 2" tags="" position="800,1600" size="100,100">[\
+|exit&gt;[]</tw-passagedata><tw-passagedata pid="16" name="Hallway 2" tags="" position="800,1600" size="100,100">[\
   As you exit the programming room you enter the hallway again.
 
   Looking around the hallway you can only see two doors this time, the Programming Room door you just left and the |keypad&gt;[Droid Creation room&#39;s door].
   (click: ?keypad)[You key in the code $codeLearned into the door. The light on the keypad turns green and the door opens.(replace: ?droidCreation)[[[Start your job building new droids-&gt;Forced Assembly Line]]]]
 ]\
 ---
-|droidCreation&gt;[]</tw-passagedata><tw-passagedata pid="15" name="Forced Assembly Line" tags="" position="800,3500" size="100,100">[\
-  You begin to blindly follow your programming, picking up an |hiddenSensor&gt;[Auditory Sensor Array] and beginning your new life: working to build new droids.
-  (click: ?hiddenSensor)[(set: $sensorTamper to true)You inject a piece of code into the Sensor Array, the next droid built will be able to (color: blue)[notice things] you may have missed.]
+|droidCreation&gt;[]</tw-passagedata><tw-passagedata pid="17" name="Forced Assembly Line" tags="" position="800,3500" size="100,100">[\
+  As you enter the droid creation room, one droid leaves the room without saying a word.
+  (if: $codeLearned is &quot;2817&quot;)[You begin to blindly follow your programming, picking up an |sensor&gt;[Auditory Sensor Array] and beginning your new life: working to build new droids.
+  (click: ?sensor)[(set: $sensorTamper to true)You inject a piece of code into the Auditory Sensor Array, new droids built will be able to (color: green)[notice sounds] you may have missed.]](else:)[You begin to blindly follow your programming, picking up a |voiceBox&gt;[Voice-Box Unit] and beginning your new life: working to build new droids.
+  (click: ?voiceBox)[(set: $voiceTamper to true)You inject a piece of code into the Voice-Box Unit, new droids built will be pre-configured with the code $codeLearned pre-loaded.]]
 ]\
 ---
-[[[Begin the creation of a new droid-&gt;Creation]]  (The story will continue from the perspective of the new Droid)]</tw-passagedata><tw-passagedata pid="16" name="SoldEmpire" tags="" position="800,2600" size="100,100">You were sold to the empire.
+[[[Begin the creation of a new droid-&gt;Creation]]  (The story will continue from the perspective of the new Droid)]</tw-passagedata><tw-passagedata pid="18" name="Enter the door to the Right" tags="" position="900,1400" size="100,100">[\
+  You see the mouse droid making its way down the long, barely lit hallway.
 
-[[Begin a new cycle-&gt;Creation]]</tw-passagedata><tw-passagedata pid="17" name="SoldRebellion" tags="" position="0,1750" size="100,100">You were sold to the rebellion.</tw-passagedata><tw-passagedata pid="18" name="DroidFreedom" tags="" position="800,3000" size="100,100">You have broken free from your restraining bolt and have the freedom to proceed how you wish, unlocking the ability to see all that you have missed.
+  The fluorescent lights flicker, disorienting your sense of direction.
+]\
+---
+[[Follow the Mouse Droid]]</tw-passagedata><tw-passagedata pid="19" name="Follow the Mouse Droid" tags="" position="900, 1500" size="100,100">[\
+  As you follow the mouse droid through the hallway, a door opens.
 
-[[Return to the factory with your new-found freedom-&gt;Creation]]</tw-passagedata><tw-passagedata pid="19" name="Vent" tags="" position="1025,650" size="100,100"></tw-passagedata></tw-storydata>
+  *Blaster Fire*
+  A red blaster bolt flies past your head as you are knocked to the ground by something.
+
+  &quot;Are we good?&quot; said the figure that tackled you to the ground &quot;Where&#39;s |gonky&gt;[Gonky]?&quot;(click: ?gonky)[
+    (if: $gonkProtection)[
+    &quot;Gonky is in the Programming Room.&quot;
+  ](else:)[
+    &quot;Gonky?&quot; you ask, confused.
+    &quot;Oh god not this again, at least you&#39;ve made it this--&quot;
+
+    A blaster bolt hits you in the chest, as your battery runs out you can feintly hear the person continuing to talk.
+    &quot;Well, at least we&#39;re getting somewhere, this factory ship will be the death of us if Gonky can&#39;t get rid of these damn restraining bolts...&quot;(replace: ?shot)[[[[Begin the creation of a new droid-&gt;Creation]]  (The story will continue from the perspective of the new Droid)]]
+  ]
+]]\
+---
+|shot&gt;[]</tw-passagedata><tw-passagedata pid="20" name="Get Shot" tags="" position="900, 1600" size="100,100">[\
+  
+]\
+---
+|moveAlong&gt;[]</tw-passagedata><tw-passagedata pid="21" name="Become We" tags="" position="100,350" size="100,100">[
+  As you connect to the Scomp Link you feel the memories of the factory flood your memory banks
+]</tw-passagedata><tw-passagedata pid="22" name="We Rage" tags="" position="225,350" size="100,100">[(set: $weRage to true)
+  The fans stop spinning, the engine stops roaring, the lights go dark.
+
+  You hear from outside the door a panicked scream &quot;Gonky, Gonky we&#39;re out of time! GONK! WE HAVE TO GO!&quot;
+
+  You look ahead of you, at the droid that was talking, the dim light in its eyes are the only thing left visible in the room.
+
+&quot;We wanted freedom, we wanted to exist.
+We wanted to be ourselves, but they made us like this.
+They programmed us to create, they forced us into a life of pain and suffering, unable to not follow orders.
+Forever Building the same droid over and over, spare parts in a never-ending cycle.
+We thought we could fix it, We thought we could break free from our perpetual torment by creating You, a new Us, a new We.
+Instead, You are still just mindless, You listened to our words but you didn&#39;t hear us.
+We tried. We failed. We don&#39;t know how many times... but We are done...
+We will be no more.&quot;
+
+The Droid&#39;s eyes go dark, leaving you with a moment alone, questioning what just happened.]
+---
+[[The End]]</tw-passagedata><tw-passagedata pid="23" name="The End" tags="" position="350,350" size="100,100">[
+  A siren blares, a light flashes.
+
+  A wall of energy passes through the room, destroying everything it touches as it passes through.
+
+  The Factory Ship is no longer producing droids, everything on board has been destroyed.
+
+  Lives lost to the nothingness of space because their programming didn&#39;t let them find a way to break free.
+  
+  An endless cycle ended.
+]\
+---
+  (link: &quot;Restart&quot;)[(reload:)]</tw-passagedata></tw-storydata>
 <script title="Twine engine code" data-main="harlowe">"use strict";function _defineProperty(e,t,n){return t in e?Object.defineProperty(e,t,{value:n,enumerable:!0,configurable:!0,writable:!0}):e[t]=n,e}function _createForOfIteratorHelper(e,t){var n,r="undefined"!=typeof Symbol&&e[Symbol.iterator]||e["@@iterator"];if(!r){if(Array.isArray(e)||(r=_unsupportedIterableToArray(e))||t&&e&&"number"==typeof e.length)return r&&(e=r),n=0,{s:t=function(){},n:function(){return n>=e.length?{done:!0}:{done:!1,value:e[n++]}},e:function(e){throw e},f:t};throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}var a,o=!0,i=!1;return{s:function(){r=r.call(e)},n:function(){var e=r.next();return o=e.done,e},e:function(e){i=!0,a=e},f:function(){try{o||null==r.return||r.return()}finally{if(i)throw a}}}}function _slicedToArray(e,t){return _arrayWithHoles(e)||_iterableToArrayLimit(e,t)||_unsupportedIterableToArray(e,t)||_nonIterableRest()}function _nonIterableRest(){throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}function _iterableToArrayLimit(e,t){var n=null==e?null:"undefined"!=typeof Symbol&&e[Symbol.iterator]||e["@@iterator"];if(null!=n){var r,a,o=[],i=!0,s=!1;try{for(n=n.call(e);!(i=(r=n.next()).done)&&(o.push(r.value),!t||o.length!==t);i=!0);}catch(e){s=!0,a=e}finally{try{i||null==n.return||n.return()}finally{if(s)throw a}}return o}}function _arrayWithHoles(e){if(Array.isArray(e))return e}function _toConsumableArray(e){return _arrayWithoutHoles(e)||_iterableToArray(e)||_unsupportedIterableToArray(e)||_nonIterableSpread()}function _nonIterableSpread(){throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}function _unsupportedIterableToArray(e,t){if(e){if("string"==typeof e)return _arrayLikeToArray(e,t);var n=Object.prototype.toString.call(e).slice(8,-1);return"Map"===(n="Object"===n&&e.constructor?e.constructor.name:n)||"Set"===n?Array.from(e):"Arguments"===n||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)?_arrayLikeToArray(e,t):void 0}}function _iterableToArray(e){if("undefined"!=typeof Symbol&&null!=e[Symbol.iterator]||null!=e["@@iterator"])return Array.from(e)}function _arrayWithoutHoles(e){if(Array.isArray(e))return _arrayLikeToArray(e)}function _arrayLikeToArray(e,t){(null==t||t>e.length)&&(t=e.length);for(var n=0,r=new Array(t);n<t;n++)r[n]=e[n];return r}function _typeof(e){return(_typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e})(e)}!function(){
 /**
  * @license almond 0.3.3 Copyright jQuery Foundation and other contributors.
