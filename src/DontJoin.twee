@@ -246,7 +246,9 @@ There is four doors in the hallway, the room you came from, a |lockedDoor>[door 
 [\
   You see the mouse droid making its way down the long, barely lit hallway.
 
-  The fluorescent lights flicker, disorienting your sense of direction.
+  The fluorescent lights flicker, disorienting your sense of direction.(if: $saveGonky)[
+    TODO: We the GONK needs to be here
+  ]
 ]\
 ---
 [[Follow the Mouse Droid]]
